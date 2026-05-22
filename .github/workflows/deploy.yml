@@ -1,0 +1,38 @@
+name: 验证前端自动化部署
+
+on:
+  push:
+    branches:
+      - main # 触发分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 打包项目
+        run: npm run build # 确保你的打包产物在 dist 目录下
+
+      - name: 安装阿里云 OSS 工具
+        uses: manyuanrong/setup-ossutil@v2.0
+        with:
+          endpoint: "oss-cn-beijing.aliyuncs.com"
+          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+
+      - name: 一键同步产物到 OSS
+        # -r 表示递归，-u 表示增量更新，--force 表示强制覆盖
+        run: |
+          ossutil cp -r -u --force dist/ oss://你的OSS-Bucket名称/
