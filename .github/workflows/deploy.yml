@@ -1,4 +1,4 @@
-name: 验证前端自动化部署
+name: 前端自动化部署（腾讯云COS）
 
 on:
   push:
@@ -34,19 +34,14 @@ jobs:
       - name: 打包项目
         run: pnpm run build
 
-      - name: 安装阿里云 OSS 工具
-        uses: manyuanrong/setup-ossutil@v2.0
+      - name: 上传到腾讯云 COS
+        uses: TencentCloud/cos-action@v1
         with:
-          endpoint: oss-cn-beijing.aliyuncs.com
-          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
-
-      - name: 一键同步产物到 OSS
-        env:
-          OSS_BUCKET: ${{ secrets.ALIYUN_OSS_BUCKET }}
-        run: |
-          if [ -z "$OSS_BUCKET" ]; then
-            echo "请在仓库 Settings → Secrets 中配置 OSS_BUCKET（仅填 bucket 名称，不含 oss://）"
-            exit 1
-          fi
-          ossutil cp -r -u --force dist/ "oss://${OSS_BUCKET}/"
+          secret_id: ${{ secrets.TENCENT_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_SECRET_KEY }}
+          bucket: ${{ secrets.TENCENT_COS_BUCKET }}
+          region: ap-beijing
+          content: dist/
+          target: /
+          clean: false
+          accelerate: false
