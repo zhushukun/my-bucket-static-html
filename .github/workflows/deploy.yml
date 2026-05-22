@@ -39,9 +39,8 @@ jobs:
         with:
           secret_id: ${{ secrets.TENCENT_SECRET_ID }}
           secret_key: ${{ secrets.TENCENT_SECRET_KEY }}
-          bucket: ${{ secrets.TENCENT_COS_BUCKET }}
-          region: ap-beijing
-          content: dist/
-          target: /
+          cos_bucket: ${{ secrets.TENCENT_COS_BUCKET }}
+          cos_region: ap-beijing
+          local_path: dist/
+          remote_path: /
           clean: false
-          accelerate: false
