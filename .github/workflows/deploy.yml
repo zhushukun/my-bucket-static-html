@@ -43,7 +43,7 @@ jobs:
 
       - name: 一键同步产物到 OSS
         env:
-          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+          OSS_BUCKET: ${{ secrets.ALIYUN_OSS_BUCKET }}
         run: |
           if [ -z "$OSS_BUCKET" ]; then
             echo "请在仓库 Settings → Secrets 中配置 OSS_BUCKET（仅填 bucket 名称，不含 oss://）"
