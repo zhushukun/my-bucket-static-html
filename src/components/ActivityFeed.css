@@ -1,0 +1,118 @@
+.activity-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+}
+
+.activity-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.activity-action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.activity-action:hover {
+  text-decoration: underline;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.action-upload {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+.action-download {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.action-share {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+.action-create {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.action-delete {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+.action-rename {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.activity-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-text {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.activity-text strong {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.activity-target {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.activity-time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
